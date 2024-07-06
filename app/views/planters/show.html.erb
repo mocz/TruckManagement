@@ -1,0 +1,53 @@
+<div id="<%= dom_id @planter %>" class="text-center">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><strong>Name:</strong> <%= @planter.name %></h5>
+      <p class="card-text"><strong>Address:</strong> <%= @planter.address %></p>
+      <p class="card-text"><strong>Mobile Number:</strong> <%= @planter.mobile_number %></p>
+      <p class="card-text"><strong>Status:</strong> <%= @planter.status %></p>
+
+      <h3 class="mt-4">Associated Dispatches</h3>
+
+      <% if @planter.dispatches.any? %>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>Dispatch Id</th>
+                <th>Truck License Plate</th>
+                <th>Truck ID</th>
+                <th>Location</th>
+                <th>Receive Date</th>
+                <th>Gross Weight</th>
+                <th>Status</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @planter.dispatches.each do |dispatch| %>
+                <tr>
+                  <td><%= dispatch.id %></td>
+                  <td><%= dispatch.truck.license_plate %></td>
+                  <td><%= dispatch.truck.truck_id %></td>
+                  <td><%= "#{dispatch.location.barangay}, #{dispatch.location.town}" %></td>
+                  <td><%= dispatch.receive_date %></td>
+                  <td><%= dispatch.gross_weight %></td>
+                  <td><%= dispatch.status %></td>
+                  <td><%= dispatch.description %></td>
+                  <td class="text-nowrap">
+                    <%= link_to 'Show', dispatch, class: 'btn btn-primary btn-sm mr-1' %>
+                    <%= link_to 'Edit', edit_dispatch_path(dispatch), class: 'btn btn-secondary btn-sm mr-1' %>
+                    <%= link_to 'Print', print_dispatch_path(dispatch), class: 'btn btn-info btn-sm', target: "_self" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <p>No dispatches associated with this planter.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Plantations</h1>
+
+<div id="plantations">
+  <% @plantations.each do |plantation| %>
+    <%= render plantation %>
+    <p>
+      <%= link_to "Show this plantation", plantation %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New plantation", new_plantation_path %>

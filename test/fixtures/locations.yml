@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  barangay: MyString
+  town: MyString
+  area_code: MyString
+  km_dist: 1
+
+two:
+  barangay: MyString
+  town: MyString
+  area_code: MyString
+  km_dist: 1

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  truck: one
+  location: one
+  planter: one
+  receive_date: 2024-07-04
+  gross_weight: 1
+  status: MyString
+  description: MyString
+
+two:
+  truck: two
+  location: two
+  planter: two
+  receive_date: 2024-07-04
+  gross_weight: 1
+  status: MyString
+  description: MyString

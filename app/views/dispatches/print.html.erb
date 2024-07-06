@@ -1,0 +1,51 @@
+<!-- app/views/dispatches/print.html.erb -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dispatch Print</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= javascript_importmap_tags %>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      width: 80mm;
+      margin: auto;
+      text-align: left;
+    }
+    .header {
+      margin-bottom: 20px;
+    }
+    .qr-code {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Dispatch Details</h1>
+    </div>
+    <p><strong>Truck:</strong> <%= @dispatch.truck_id %></p>
+    <p><strong>Location:</strong> <%= @dispatch.location_id %></p>
+    <p><strong>Planter:</strong> <%= @dispatch.planter_id %></p>
+    <p><strong>Receive Date:</strong> <%= @dispatch.receive_date %></p>
+    <p><strong>Gross Weight:</strong> <%= @dispatch.gross_weight %></p>
+    <p><strong>Status:</strong> <%= @dispatch.status %></p>
+    <p><strong>Description:</strong> <%= @dispatch.description %></p>
+    <div class="qr-code">
+      <%= raw @dispatch.qr_code %>
+    </div>
+  </div>
+  <button onclick="printDispatchSlip()">Print Dispatch Slip</button>
+
+    <script>
+    function printDispatchSlip() {
+        // Implement printing logic here
+        window.print();
+    }
+    </script>
+</body>
+</html>

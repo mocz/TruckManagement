@@ -1,0 +1,46 @@
+<style>
+  .containersss {
+    max-width: 400px;
+    width: 150%;
+    margin: 0 auto; 
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #fff;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.qr-code {
+  margin-top: 20px;
+  text-align: center;
+}
+</style>
+
+<div class="containersss">
+    <div class="header">
+      <h1>Dispatch Details</h1>
+    </div>
+
+    <%= render @dispatch %>
+
+    <div class="qr-code">
+      <p><strong>QR Code:</strong></p>
+      <%= raw @dispatch.qr_code %>
+      <p> <%= @dispatch.id %></p>
+    </div>
+</div>
+<div>
+  <div class="no-print">
+    <div class="actions">
+      <%= link_to 'New Dispatch', new_dispatch_path, class: 'btn btn-success mt-3' %>
+      <%= link_to "Edit this dispatch", edit_dispatch_path(@dispatch), class: 'btn btn-primary mt-3' %>
+      <%= link_to "Back to dispatches", dispatches_path, class: 'btn btn-info mt-3' %>
+      <%= button_to "Delete", @dispatch, method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger mt-3' %>
+    </div>
+  </div>
+</div>
+  <% if flash[:just_created] %>
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      window.print();
+    });
+  </script>
+<% end %>

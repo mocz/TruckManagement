@@ -1,0 +1,13 @@
+<!-- app/views/dispatches/scan.html.erb -->
+<div id="qrScanner"></div>
+<% if @qr_code_url %>
+  <%= image_tag @qr_code_url, alt: "QR Code" %>
+<% else %>
+  <p>No QR code available for this dispatch.</p>
+<% end %>
+
+<script src="https://unpkg.com/@zxing/library@latest"></script>
+<script>
+  const codeReader = new ZXing.BrowserQRCodeReader();
+  // Additional JavaScript logic for scanning QR code goes here
+</script>

@@ -1,0 +1,37 @@
+<%= form_with(model: planter) do |form| %>
+  <% if planter.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(planter.errors.count, "error") %> prohibited this planter from being saved:</h2>
+
+      <ul>
+        <% planter.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :address, style: "display: block" %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :mobile_number, style: "display: block" %>
+    <%= form.text_field :mobile_number %>
+  </div>
+
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

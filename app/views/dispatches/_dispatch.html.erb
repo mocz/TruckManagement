@@ -1,0 +1,33 @@
+<div id="<%= dom_id @dispatch %>">
+  <p>
+    <strong>Truck:</strong>
+    <%= @dispatch.truck.license_plate %>
+  </p>
+  <p>
+    <strong>Location:</strong>
+    <%= @dispatch.location.barangay %>, <%= @dispatch.location.town %>
+  </p>
+  <p>
+    <strong>Planter:</strong>
+    <%= @dispatch.planter.name %>
+  </p>
+  <p>
+    <% if dispatch.receive_date.present? %>
+    <p><strong>Receive date:</strong> <%= dispatch.receive_date.strftime('%Y-%m-%d %H:%M:%S') %></p>
+    <% else %>
+      <p><strong>Receive date:</strong> Not specified</p>
+    <% end %>
+  </p>
+  <p>
+    <strong>Gross weight:</strong>
+    <%= @dispatch.gross_weight %>
+  </p>
+  <p>
+    <strong>Status:</strong>
+    <%= @dispatch.status %>
+  </p>
+  <p>
+    <strong>Description:</strong>
+    <%= @dispatch.description %>
+  </p>
+</div>

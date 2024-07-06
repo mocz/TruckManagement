@@ -1,0 +1,51 @@
+<!-- app/views/dispatches/receive_form.html.erb -->
+<div class="container">
+  <h1 class="text-center mt-4 mb-4">Receive Incoming Truck</h1>
+  <div class="text-center">
+    <video id="preview" style="width: 20%; height: auto;"></video>
+    <div id="result" class="alert alert-info mt-3" style="display: none;"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/@zxing/library@0.18.6/umd/index.min.js"></script>
+<script>
+  window.addEventListener('load', () => {
+    const codeReader = new ZXing.BrowserQRCodeReader();
+    const videoElement = document.getElementById('preview');
+    const resultElement = document.getElementById('result');
+
+    codeReader.decodeFromVideoDevice(null, 'preview', (result, error) => {
+      if (result) {
+        const qrCode = result.text;
+        fetch('<%= receive_dispatches_path %>', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': '<%= form_authenticity_token %>'
+          },
+          body: JSON.stringify({ qr_code: qrCode })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.message) {
+            resultElement.classList.remove('alert-danger');
+            resultElement.classList.add('alert-info');
+            resultElement.textContent = data.message;
+          } else if (data.error) {
+            resultElement.classList.remove('alert-info');
+            resultElement.classList.add('alert-danger');
+            resultElement.textContent = data.error;
+          }
+          resultElement.style.display = 'block';
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          resultElement.classList.remove('alert-info');
+          resultElement.classList.add('alert-danger');
+          resultElement.textContent = 'An error occurred while receiving the dispatch.';
+          resultElement.style.display = 'block';
+        });
+      }
+    });
+  });
+</script>

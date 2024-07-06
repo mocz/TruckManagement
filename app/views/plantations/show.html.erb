@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @plantation %>
+
+<div>
+  <%= link_to "Edit this plantation", edit_plantation_path(@plantation) %> |
+  <%= link_to "Back to plantations", plantations_path %>
+
+  <%= button_to "Destroy this plantation", @plantation, method: :delete %>
+</div>
