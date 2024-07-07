@@ -44,7 +44,7 @@ gem 'webpacker', '~> 5.x'
 
 gem 'ransack'
 
-gem 'cupsffi'
+# bun
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
