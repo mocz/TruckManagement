@@ -6,11 +6,11 @@ class Dispatch < ApplicationRecord
 
   
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "description", "gross_weight", "id", "location_id", "planter_id", "qr_code", "receive_date", "status", "truck_id", "updated_at"]
+    %w[id truck_id location_id planter_id gross_weight status created_at updated_at]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["truck", "location", "planter"]
+    %w[truck location planter]
   end
 
   private
